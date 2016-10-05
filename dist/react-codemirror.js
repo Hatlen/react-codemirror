@@ -9396,33 +9396,11 @@ module.exports = debounce;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],4:[function(require,module,exports){
-'use strict';
-module.exports = function (React) {
-    var version = parseFloat(React.version);
-    if (version >= 0.14) {
-        try {
-            return require('react-dom');
-        } catch (e) {
-            return null;
-        }
-    } else {
-        var render = React.render;
-        var unmountComponentAtNode = React.unmountComponentAtNode;
-        return {
-            findDOMNode: function findDOMNode(reactElement) {
-                return typeof reactElement.getDOMNode === 'function' ? reactElement.getDOMNode() : reactElement;
-            },
-            render: render,
-            unmountComponentAtNode: unmountComponentAtNode
-        };
-    }
-};
-},{"react-dom":undefined}],5:[function(require,module,exports){
 (function (global){
 'use strict';
 
 var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
-var ReactDOM = require('react-dom-polyfill')(React);
+var ReactDOM = require('react-dom');
 var findDOMNode = ReactDOM.findDOMNode;
 var className = require('classnames');
 var debounce = require('lodash.debounce');
@@ -9512,5 +9490,5 @@ var CodeMirror = React.createClass({
 module.exports = CodeMirror;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"classnames":1,"codemirror":2,"lodash.debounce":3,"react-dom-polyfill":4}]},{},[5])(5)
+},{"classnames":1,"codemirror":2,"lodash.debounce":3,"react-dom":undefined}]},{},[4])(4)
 });
