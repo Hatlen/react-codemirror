@@ -9427,6 +9427,9 @@ var CodeMirror = React.createClass({
 			isFocused: false
 		};
 	},
+	componentWillMount: function componentWillMount() {
+		this.componentWillReceiveProps = debounce(this.componentWillReceiveProps, 0);
+	},
 	componentDidMount: function componentDidMount() {
 		var textareaNode = findDOMNode(this.refs.textarea);
 		var codeMirrorInstance = this.getCodeMirrorInstance();
@@ -9443,7 +9446,7 @@ var CodeMirror = React.createClass({
 			this.codeMirror.toTextArea();
 		}
 	},
-	componentWillReceiveProps: debounce(function (nextProps) {
+	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		if (this.codeMirror && nextProps.value !== undefined && this.codeMirror.getValue() !== nextProps.value) {
 			this.codeMirror.setValue(nextProps.value);
 		}
@@ -9454,7 +9457,7 @@ var CodeMirror = React.createClass({
 				}
 			}
 		}
-	}, 0),
+	},
 	getCodeMirror: function getCodeMirror() {
 		return this.codeMirror;
 	},
